@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="GameProcessess.cs" />
+    <Compile Include="PrintManager.cs" />
+    <Compile Include="BattleField.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

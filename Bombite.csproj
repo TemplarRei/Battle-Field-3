@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleField.cs" />
+    <Compile Include="Utils\Printer.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

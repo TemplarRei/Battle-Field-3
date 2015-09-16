@@ -7,19 +7,127 @@
     {
         public static void Main()
         {
-            Console.Write("Enter the size of the battle field: n = ");
-            int fieldSize = int.Parse(Console.ReadLine());
+            int fieldSize = TakeFieldSize();
+            var battleField = FieldInit(fieldSize);
 
-            BattleField battleField = new BattleField(fieldSize);
+            Console.WriteLine("Welcome to \"Battle Field\" game.");
 
+            Console.WriteLine();
+            Printer.PrintField(battleField);
+            Console.WriteLine();
+            int moveCounter = 0;
+            bool gameOver = false;
+
+            while (!gameOver)
+            {
+
+                string input = GetInput();
+                int row = GetIntFromInput(input, true);
+                int col = GetIntFromInput(input, false);
+                var mine = GetMine(battleField, row, col);
+
+                if (mine != 0)
+                {
+                    battleField = HodNaIgracha(row, col, fieldSize, battleField);
+                    moveCounter++;
+                }
+
+                Printer.PrintField(battleField);
+
+                gameOver = EndOfGameCheck(fieldSize, battleField);
+
+            }
+
+            GameEnd(battleField, moveCounter);
+        }
+
+        private static void GameEnd(BattleField battleField, int moveCounter)
+        {
+            Printer.PrintField(battleField);
+            Console.WriteLine("Game over!");
+            Printer.PrintMoves(moveCounter);
+        }
+
+        private static bool EndOfGameCheck(int fieldSize, BattleField battleField)
+        {
+            int count = 0;
+            bool krai = false;
+
+            for (int rowCheck = 0; rowCheck < fieldSize; rowCheck++)
+            {
+                for (int colCheck = 0; colCheck < fieldSize; colCheck++)
+                {
+                    if (battleField.Field[rowCheck, colCheck] == "-" || battleField.Field[rowCheck, colCheck] == "X")
+                    {
+                        count++;
+                    }
+
+                    if (count == fieldSize * fieldSize)
+                    {
+                        krai = true;
+                    }
+                }
+            }
+
+            return krai;
+        }
+
+        private static int GetMine(BattleField battleField, int row, int col)
+        {
+            string currMoveObject = battleField.Field[row, col];
+            int mine = 0;
+
+            if (!int.TryParse(currMoveObject, out mine))
+            {
+                Console.WriteLine("Invalid Move");
+            }
+
+            return mine;
+        }
+
+        private static int GetIntFromInput(string input, bool coordinateFlag)
+        {
+            int coordFlag = coordinateFlag ? 0 : 1;
+            var rowsString = input.Split(' ')[coordFlag];
+            var rowsInt = int.Parse(rowsString);
+            return rowsInt;
+        }
+
+        private static string GetInput()
+        {
+            Console.WriteLine("Please enter coordinates: ");
+            string input = Console.ReadLine();
+
+            return input;
+        }
+
+        private static BattleField FieldInit(int size)
+        {
+            //console.write("enter the size of the battle field: n = ");
+            //fieldsize = int.parse(console.readline());
+            var battleField = new BattleField(size);
             Random randomPosition = new Random();
 
             battleField.DrawField();
 
+            AddMines(battleField, randomPosition);
+
+            return battleField;
+        }
+
+        private static int TakeFieldSize()
+        {
+            Console.Write("Enter the size of the battle field: n = ");
+            int fieldSize = int.Parse(Console.ReadLine());
+            return fieldSize;
+        }
+
+        private static void AddMines(BattleField battleField, Random randomPosition)
+        {
             string[] minesArray = { "1", "2", "3", "4", "5" };
 
-            double fifteenPercentNSquared = 0.15 * fieldSize * fieldSize;
-            double thirtyPercenNSquared = 0.3 * fieldSize * fieldSize;
+            double fifteenPercentNSquared = 0.15 * battleField.Size * battleField.Size;
+            double thirtyPercenNSquared = 0.3 * battleField.Size * battleField.Size;
 
             int fifteenPercent = Convert.ToInt16(fifteenPercentNSquared);
             int thirtyPercent = Convert.ToInt16(thirtyPercenNSquared);
@@ -28,8 +136,8 @@
 
             for (int i = 0; i < numberOfMines; i++)
             {
-                int newRow = randomPosition.Next(0, fieldSize);
-                int newCol = randomPosition.Next(0, fieldSize);
+                int newRow = randomPosition.Next(0, battleField.Size);
+                int newCol = randomPosition.Next(0, battleField.Size);
 
                 if (battleField.Field[newRow, newCol] == "-")
                 {
@@ -38,110 +146,6 @@
                 else
                 {
                     numberOfMines--;
-                }
-            }
-
-            Console.WriteLine("Welcome to \"Battle Field\" game.");
-            // tuka pochvame
-            Console.WriteLine();
-            Printer.PrintField(battleField);
-            Console.WriteLine();
-            int moveCounter = 0;
-            // this is a cycle from ZERO to ONE-HUNDRED 
-            for (int turns = 0; turns < 100; turns++)
-            {
-                // here we read a string from the console
-                Console.Write("Please enter coordinates: ");
-                string line = Console.ReadLine();
-                string stringRow = string.Empty;
-                string stringCol = string.Empty;
-                int row;
-                int col;
-                bool flagForRow = true;
-                bool flagForCol = false;
-                int positionWhenIStopped = 0;
-
-                for (int i = 0; i < 100; i++)
-                {
-                    if (flagForRow)
-                    {
-                        if (line[i] != ' ')
-                        {
-                            stringRow += line[i];
-
-                            if (line[i + 1] == ' ')
-                            {
-                                positionWhenIStopped = i + 1;
-                                flagForRow = false;
-                                flagForCol = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                for (int i = positionWhenIStopped; i < 100; i++)
-                {
-                    if (flagForCol)
-                    {
-                        if (line[i] != ' ')
-                        {
-                            stringCol = stringCol + line[i];
-                            break;
-                        }
-                    }
-                }
-
-                row = int.Parse(stringRow);
-                col = int.Parse(stringCol);
-
-                if (battleField.Field[row, col] == "-" || battleField.Field[row, col] == "X")
-                {
-                    if (turns > 0)
-                    {
-                        turns -= turns;
-                    }
-                    else
-                    {
-                        turns = -1;
-                    }
-
-                    Console.WriteLine("Invalid move!");
-                }
-                // tuka proverqvam dali emina
-                if (battleField.Field[row, col] == "1" || battleField.Field[row, col] == "2" || battleField.Field[row, col] == "3" || battleField.Field[row, col] == "4" || battleField.Field[row, col] == "5")
-                {
-                    battleField = HodNaIgracha(row, col, fieldSize, battleField);
-                    moveCounter++;
-                }
-
-                Printer.PrintField(battleField);
-
-                int count = 0;
-                bool krai = false;
-
-                for (int rowCheck = 0; rowCheck < fieldSize; rowCheck++)
-                {
-                    for (int colCheck = 0; colCheck < fieldSize; colCheck++)
-                    {
-                        if (battleField.Field[rowCheck, colCheck] == "-" || battleField.Field[rowCheck, colCheck] == "X")
-                        {
-                            count++;
-                        }
-
-                        if (count == fieldSize * fieldSize)
-                        {
-                            krai = true;
-                        }
-                    }
-                }
-
-                if (krai)
-                {
-                    Printer.PrintField(battleField);
-                    Console.WriteLine("Game over!");
-                    Printer.PrintMoves(moveCounter);
-                    break;
                 }
             }
         }

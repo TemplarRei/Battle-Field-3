@@ -1,11 +1,11 @@
-﻿namespace Utils
+﻿namespace BattleField.Utils
 {
     using System;
-    using BattleFiled;
+    using BattleField;
 
-    public static class Printer
+    public class Printer
     {
-        public static void PrintField(BattleField battleField)
+        public void PrintField(GameObject battleField)
         {
             for (int i = 0; i < battleField.Size; i++)
             {
@@ -57,7 +57,14 @@
             }
         }
 
-        public static void PrintMoves(int moves)
+        public void GameEndMessage(GameObject battleField, int moveCounter)
+        {
+            this.PrintField(battleField);
+            Console.WriteLine("Game over!");
+            this.PrintMoves(moveCounter);
+        }
+
+        public void PrintMoves(int moves)
         {
             Console.WriteLine("Detonated mines {0}", moves);
         }

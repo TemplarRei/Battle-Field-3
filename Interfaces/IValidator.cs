@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BattleFiled
+namespace BattleField.Interfaces
 {
-    class Game
+    interface IValidator
     {
     }
 }

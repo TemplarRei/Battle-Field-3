@@ -5,8 +5,7 @@ using System.Text;
 
 namespace BattleField.Interfaces
 {
-    interface IValidator
+    interface IGameObject
     {
-        bool IsValidPlayerMove();
     }
 }

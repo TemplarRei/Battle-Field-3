@@ -8,7 +8,7 @@ namespace BattleField.Utils
     public class LogicController
     {
 
-        public GameObject FieldUpdate(int row, int col, int n, GameObject battleField)
+        public void FieldUpdate(int row, int col, int n, GameObject battleField)
         {
             if (Convert.ToInt16(battleField.Field[row, col]) >= 1)
             {
@@ -147,7 +147,7 @@ namespace BattleField.Utils
 
             battleField.Field[row, col] = "X";
 
-            return battleField;
+           // return battleField;
         }
 
         public bool EndOfGameCheck(int fieldSize, GameObject battleField)

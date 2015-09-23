@@ -16,7 +16,7 @@ namespace BattleField
             int fieldSize = reader.TakeFieldSize();
             var gameObject = new GameObject(fieldSize);
 
-            
+
 
             Console.WriteLine("Welcome to \"Battle Field\" game.");
 
@@ -36,7 +36,7 @@ namespace BattleField
 
                 if (mine != 0)
                 {
-                    gameObject = logicController.FieldUpdate(row, col, fieldSize, gameObject);
+                    logicController.FieldUpdate(row, col, fieldSize, gameObject);
                     moveCounter++;
                 }
 
@@ -46,7 +46,7 @@ namespace BattleField
 
             }
 
-           printer.GameEndMessage(gameObject, moveCounter);
+            printer.GameEndMessage(gameObject, moveCounter);
         }
     }
 }

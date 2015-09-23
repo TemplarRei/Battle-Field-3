@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="GameObject.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Interfaces\IGameObject.cs" />
+    <Compile Include="Interfaces\IPrinter.cs" />
+    <Compile Include="Interfaces\IReader.cs" />
     <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="Utils\LogicController.cs" />
     <Compile Include="Utils\Printer.cs" />

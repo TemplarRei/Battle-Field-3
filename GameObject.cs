@@ -20,7 +20,7 @@
             this.field = new string[this.Size, this.Size];
 
             Random randomPosition = new Random();
-            this.DrawField();
+            this.FillField();
             AddMines(this, randomPosition);
         }
 
@@ -55,7 +55,7 @@
             }
         }
 
-        public void DrawField()
+        public void FillField()
         {
             for (int row = 0; row < this.Size; row++)
             {
@@ -71,7 +71,7 @@
             var battleField = new GameObject(size);
             Random randomPosition = new Random();
 
-            battleField.DrawField();
+            battleField.FillField();
 
             AddMines(battleField, randomPosition);
 
@@ -94,8 +94,7 @@
             {
                 int newRow = randomPosition.Next(0, battleField.Size);
                 int newCol = randomPosition.Next(0, battleField.Size);
-
-                if (battleField.Field[newRow, newCol] == "-")
+                                if (battleField.Field[newRow, newCol] == "-")
                 {
                     battleField.Field[newRow, newCol] = minesArray[randomPosition.Next(0, 5)];
                 }

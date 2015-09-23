@@ -10,8 +10,6 @@ namespace BattleField
         {
             var engine = new Core();
             engine.Run();
-        }
-
-        
+        }       
     }
 }

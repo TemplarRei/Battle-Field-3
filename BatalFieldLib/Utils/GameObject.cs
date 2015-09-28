@@ -1,9 +1,12 @@
-﻿namespace BattleField
+﻿namespace BatalFieldLib
 {
     using System;
+    using Contracts;
 
-    public class GameObject
+    public class GameObject : IGameObject
     {
+        private Random rng = new Random();
+
         private const int MinSize = 2;
         private const string FieldDrawingSymbol = "-";
         private int size;
@@ -11,7 +14,7 @@
 
         public GameObject()
         {
-            
+
         }
 
         public GameObject(int size)
@@ -21,7 +24,7 @@
 
             Random randomPosition = new Random();
             this.FillField();
-            AddMines(this, randomPosition);
+            this.AddMines();
         }
 
         public int Size
@@ -31,7 +34,7 @@
                 return this.size;
             }
 
-            private set
+            set
             {
                 if (value < MinSize)
                 {
@@ -49,14 +52,20 @@
                 return this.field;
             }
 
-            private set
+            set
             {
                 this.field = value;
             }
         }
 
+        public void SetSize(int size)
+        {
+        }
+
         public void FillField()
         {
+            this.Field = new string[this.Size, this.Size];
+
             for (int row = 0; row < this.Size; row++)
             {
                 for (int col = 0; col < this.Size; col++)
@@ -66,37 +75,34 @@
             }
         }
 
-        public GameObject FieldInit(int size)
+        public void FieldInit()
         {
-            var battleField = new GameObject(size);
             Random randomPosition = new Random();
 
-            battleField.FillField();
+            this.FillField();
 
-            AddMines(battleField, randomPosition);
-
-            return battleField;
+            this.AddMines();
         }
 
-        private void AddMines(GameObject battleField, Random randomPosition)
+        private void AddMines()
         {
             string[] minesArray = { "1", "2", "3", "4", "5" };
 
-            double fifteenPercentNSquared = 0.15 * battleField.Size * battleField.Size;
-            double thirtyPercenNSquared = 0.3 * battleField.Size * battleField.Size;
+            double fifteenPercentNSquared = 0.15 * this.Size * this.Size;
+            double thirtyPercenNSquared = 0.3 * this.Size * this.Size;
 
             int fifteenPercent = Convert.ToInt16(fifteenPercentNSquared);
             int thirtyPercent = Convert.ToInt16(thirtyPercenNSquared);
 
-            int numberOfMines = randomPosition.Next(fifteenPercent, thirtyPercent + 1);
+            int numberOfMines = rng.Next(fifteenPercent, thirtyPercent + 1);
 
             for (int i = 0; i < numberOfMines; i++)
             {
-                int newRow = randomPosition.Next(0, battleField.Size);
-                int newCol = randomPosition.Next(0, battleField.Size);
-                                if (battleField.Field[newRow, newCol] == "-")
+                int newRow = rng.Next(0, this.Size);
+                int newCol = rng.Next(0, this.Size);
+                if (this.Field[newRow, newCol] == "-")
                 {
-                    battleField.Field[newRow, newCol] = minesArray[randomPosition.Next(0, 5)];
+                    this.Field[newRow, newCol] = minesArray[rng.Next(0, 5)];
                 }
                 else
                 {

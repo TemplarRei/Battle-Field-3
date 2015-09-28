@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BattleField.Utils
+﻿namespace BatalFieldLib.Utils
 {
-    public class Reader
+    using System;
+
+    using BatalFieldLib.Contracts;
+
+    public class ConsoleReader : IReader
     {
-        public int GetIntFromInput(string input, bool coordinateFlag)
+        public int GetIntFromInput(string input, bool coordinateFlag = false)
         {
             int coordFlag = coordinateFlag ? 0 : 1;
             var rowsString = input.Split(' ')[coordFlag];

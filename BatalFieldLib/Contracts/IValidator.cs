@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BattleField.Interfaces
+namespace BatalFieldLib.Contracts
 {
-    interface IGameObject
+    public interface IValidator
     {
+        bool IsValidPlayerMove();
     }
 }

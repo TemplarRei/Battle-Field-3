@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BattleField.Utils
+﻿namespace BatalFieldLib.Utils
 {
-    public class LogicController
+    using System;
+
+    using BatalFieldLib.Contracts;
+
+    public class LogicController : ILogicController
     {
 
-        public void FieldUpdate(int row, int col, int n, GameObject battleField)
+        public void FieldUpdate(int row, int col, int n, IGameObject battleField)
         {
             if (Convert.ToInt16(battleField.Field[row, col]) >= 1)
             {
@@ -147,10 +146,10 @@ namespace BattleField.Utils
 
             battleField.Field[row, col] = "X";
 
-           // return battleField;
+            // return battleField;
         }
 
-        public bool EndOfGameCheck(int fieldSize, GameObject battleField)
+        public bool EndOfGameCheck(int fieldSize, IGameObject battleField)
         {
             int count = 0;
             bool krai = false;
@@ -174,7 +173,7 @@ namespace BattleField.Utils
             return krai;
         }
 
-        public int GetMine(GameObject battleField, int row, int col)
+        public int GetMine(IGameObject battleField, int row, int col)
         {
             string currMoveObject = battleField.Field[row, col];
             int mine = 0;

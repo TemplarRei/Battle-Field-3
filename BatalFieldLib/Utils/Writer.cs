@@ -1,11 +1,20 @@
-﻿namespace Utils
+﻿namespace BatalFieldLib.Utils
 {
     using System;
-    using BattleFiled;
+    using Contracts;
 
-    public static class Printer
+    public class ConsoleWriter : IWriter
     {
-        public static void PrintField(BattleField battleField)
+        public void InitField(IGameObject gameObject)
+        {
+            Console.WriteLine("Welcome to \"Battle Field\" game.");
+
+            Console.WriteLine();
+            PrintField(gameObject);
+            Console.WriteLine();
+        }
+
+        public void PrintField(IGameObject battleField)
         {
             for (int i = 0; i < battleField.Size; i++)
             {
@@ -57,7 +66,14 @@
             }
         }
 
-        public static void PrintMoves(int moves)
+        public void GameEndMessage(IGameObject battleField, int moveCounter)
+        {
+            this.PrintField(battleField);
+            Console.WriteLine("Game over!");
+            this.PrintMoves(moveCounter);
+        }
+
+        public void PrintMoves(int moves)
         {
             Console.WriteLine("Detonated mines {0}", moves);
         }

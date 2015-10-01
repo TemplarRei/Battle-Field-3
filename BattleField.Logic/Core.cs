@@ -1,8 +1,8 @@
 ﻿using System;
-using BatalFieldLib.Contracts;
-using BatalFieldLib.Utils;
+using BattleField.Logic.Contracts;
+using BattleField.Logic.Utils;
 
-namespace BatalFieldLib
+namespace BattleField.Logic
 {
     public class Core
     {

@@ -1,4 +1,4 @@
-﻿namespace BatalFieldLib
+﻿namespace BattleField.Logic
 {
     using System;
     using Contracts;

@@ -1,8 +1,8 @@
 ﻿namespace BattleField
 {
     using System;
-    using BatalFieldLib;
-    using BatalFieldLib.Utils;
+    using BattleField.Logic;
+    using BattleField.Logic.Utils;
 
     public class Program
     {

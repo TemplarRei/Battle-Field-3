@@ -1,8 +1,8 @@
-﻿namespace BatalFieldLib.Utils
+﻿namespace BattleField.Logic.Utils
 {
     using System;
 
-    using BatalFieldLib.Contracts;
+    using BattleField.Logic.Contracts;
 
     public class ConsoleReader : IReader
     {

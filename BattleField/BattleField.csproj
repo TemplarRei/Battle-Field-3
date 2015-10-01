@@ -87,9 +87,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="BatalFieldLib\BatalFieldLib.csproj">
+    <ProjectReference Include="..\BattleField.Logic\BattleField.Logic.csproj">
       <Project>{7450790f-f49c-44c7-a674-cc4e4a23639d}</Project>
-      <Name>BatalFieldLib</Name>
+      <Name>BattleField.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

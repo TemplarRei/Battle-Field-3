@@ -2,6 +2,7 @@
 {
     using System;
     using Contracts;
+    using BattleField.Logic.Utils;
 
     public class GameObject : IGameObject
     {
@@ -10,7 +11,7 @@
         private const int MinSize = 2;
         private const string FieldDrawingSymbol = "-";
         private int size;
-        private string[,] field;
+        private FieldCellComponent[,] field;
 
         public GameObject()
         {
@@ -20,7 +21,7 @@
         public GameObject(int size)
         {
             this.Size = size;
-            this.field = new string[this.Size, this.Size];
+            this.field = new FieldCellComponent[this.Size, this.Size];
 
             Random randomPosition = new Random();
             this.FillField();
@@ -45,7 +46,7 @@
             }
         }
 
-        public string[,] Field
+        public FieldCellComponent[,] Field
         {
             get
             {
@@ -64,13 +65,13 @@
 
         public void FillField()
         {
-            this.Field = new string[this.Size, this.Size];
+            this.Field = new FieldCellComponent[this.Size, this.Size];
 
             for (int row = 0; row < this.Size; row++)
             {
                 for (int col = 0; col < this.Size; col++)
                 {
-                    this.Field[row, col] = FieldDrawingSymbol;
+                    this.Field[row, col] = new EmptyFieldCell();
                 }
             }
         }
@@ -100,9 +101,9 @@
             {
                 int newRow = rng.Next(0, this.Size);
                 int newCol = rng.Next(0, this.Size);
-                if (this.Field[newRow, newCol] == "-")
+                if (this.Field[newRow, newCol] is EmptyFieldCell)
                 {
-                    this.Field[newRow, newCol] = minesArray[rng.Next(0, 5)];
+                    this.Field[newRow, newCol] = new MineFieldCell(minesArray[rng.Next(0, 5)]);
                 }
                 else
                 {

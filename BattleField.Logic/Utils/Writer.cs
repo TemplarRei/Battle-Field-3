@@ -41,7 +41,7 @@
 
                 for (int j = 0; j < battleField.Size; j++)
                 {
-                    Console.Write(" {0} ", battleField.Field[i, j]);
+                    Console.Write(" {0} ", battleField.Field[i, j].DrawingSign);
                 }
 
                 Console.WriteLine();

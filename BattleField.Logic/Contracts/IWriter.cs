@@ -9,5 +9,6 @@ namespace BattleField.Logic.Contracts
     {
         void PrintField(IGameObject battleField);
         void GameEndMessage(IGameObject battleField, int moveCounter);
+        void PrintString(string str);
     }
 }

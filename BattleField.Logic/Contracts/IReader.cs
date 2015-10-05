@@ -8,7 +8,6 @@ namespace BattleField.Logic.Contracts
     public interface IReader
     {
         string GetInput();
-        int GetIntFromInput(string input, bool coordinateFlag = false);
         int TakeFieldSize();
     }
 }

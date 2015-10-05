@@ -77,5 +77,10 @@
         {
             Console.WriteLine("Detonated mines {0}", moves);
         }
+
+        public void PrintString(string str)
+        {
+            Console.Write(str);
+        }
     }
 }

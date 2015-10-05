@@ -51,7 +51,10 @@
     <Compile Include="Utils\EmptyFieldCell.cs" />
     <Compile Include="Utils\ExplodedFieldCell.cs" />
     <Compile Include="Utils\FieldCellComponent.cs" />
+    <Compile Include="Utils\FieldCellFactory.cs" />
+    <Compile Include="Utils\FieldCellType.cs" />
     <Compile Include="Utils\GameObject.cs" />
+    <Compile Include="Contracts\IFieldCellFactory.cs" />
     <Compile Include="Utils\LogicController.cs" />
     <Compile Include="Utils\MineFieldCell.cs" />
     <Compile Include="Utils\Reader.cs" />

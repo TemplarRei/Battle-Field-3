@@ -12,10 +12,11 @@
         private const string FieldDrawingSymbol = "-";
         private int size;
         private FieldCellComponent[,] field;
+        public IFieldCellFactory Factory { get; set; }
 
-        public GameObject()
+        public GameObject(IFieldCellFactory factory)
         {
-
+            this.Factory = factory;
         }
 
         public GameObject(int size)
@@ -65,13 +66,15 @@
 
         public void FillField()
         {
+            // TODO : FLYWEIGHT PATTERN
+            var emptyFieldCell = this.Factory.GetFieldCell(FieldCellType.EmptyFieldCell);
             this.Field = new FieldCellComponent[this.Size, this.Size];
 
             for (int row = 0; row < this.Size; row++)
             {
                 for (int col = 0; col < this.Size; col++)
                 {
-                    this.Field[row, col] = new EmptyFieldCell();
+                    this.Field[row, col] = emptyFieldCell;
                 }
             }
         }
@@ -97,13 +100,16 @@
 
             int numberOfMines = rng.Next(fifteenPercent, thirtyPercent + 1);
 
+            
+
             for (int i = 0; i < numberOfMines; i++)
             {
                 int newRow = rng.Next(0, this.Size);
                 int newCol = rng.Next(0, this.Size);
                 if (this.Field[newRow, newCol] is EmptyFieldCell)
                 {
-                    this.Field[newRow, newCol] = new MineFieldCell(minesArray[rng.Next(0, 5)]);
+                    //this.Field[newRow, newCol] = new MineFieldCell(minesArray[rng.Next(0, 5)]);
+                    this.Field[newRow, newCol] = this.Factory.GetFieldCell(FieldCellType.MineFieldCell,minesArray[rng.Next(0, 5)]);
                 }
                 else
                 {

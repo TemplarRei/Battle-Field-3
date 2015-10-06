@@ -10,146 +10,165 @@
         public void FieldUpdate(int row, int col, int n, IGameObject battleField, IFieldCellFactory factory)
         {
             // TODO: FLYWEIGHT PATTERN NEEDED
-           
+
             var explodedFieldCell = factory.GetFieldCell(FieldCellType.ExplodedFieldCell);
-            if (battleField.Field[row, col].Select() != 0)
+            switch (battleField.Field[row, col].Select())
             {
-                if (row - 1 >= 0 && col - 1 >= 0)
-                {
-                    battleField.Field[row - 1, col - 1] = explodedFieldCell;
-                }
+                case 1: ExplodeLevelOne(row, col, n, battleField, explodedFieldCell); break;
+                case 2: ExplodeLevelTwo(row, col, n, battleField, explodedFieldCell); break;
+                case 3: ExplodeLevelThree(row, col, n, battleField, explodedFieldCell); break;
+                case 4: ExplodeLevelFour(row, col, n, battleField, explodedFieldCell); break;
+                case 5: ExplodeLevelFive(row, col, n, battleField, explodedFieldCell); break;
+                default:
+                    break;
+            }         
 
-                if (row - 1 >= 0 && col < n - 1)
-                {
-                    battleField.Field[row - 1, col + 1] = explodedFieldCell;
-                }
+            // return battleField;
+        }
 
-                if (row < n - 1 && col - 1 > 0)
-                {
-                    battleField.Field[row + 1, col - 1] = explodedFieldCell;
-                }
+        private static void ExplodeLevelFive(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        {
+            ExplodeLevelFour(row, col, n, battleField, explodedFieldCell);
 
-                if (row < n - 1 && col < n - 1)
-                {
-                    battleField.Field[row + 1, col + 1] = explodedFieldCell;
-                }
+            if (row - 2 >= 0 && col - 2 >= 0)
+            {
+                battleField.Field[row - 2, col - 2] = explodedFieldCell;
+            }
 
-                if (battleField.Field[row, col].Select() >= 2)
-                {
-                    if (row - 1 >= 0)
-                    {
-                        battleField.Field[row - 1, col] = explodedFieldCell;
-                    }
+            if (row - 2 >= 0 && col < n - 2)
+            {
+                battleField.Field[row - 2, col + 2] = explodedFieldCell;
+            }
 
-                    if (col - 1 >= 0)
-                    {
-                        battleField.Field[row, col - 1] = explodedFieldCell;
-                    }
+            if (row < n - 2 && col - 2 >= 0)
+            {
+                battleField.Field[row + 2, col - 2] = explodedFieldCell;
+            }
 
-                    if (col < n - 1)
-                    {
-                        battleField.Field[row, col + 1] = explodedFieldCell;
-                    }
+            if (row < n - 2 && col < n - 2)
+            {
+                battleField.Field[row + 2, col + 2] = explodedFieldCell;
+            }
+        }
 
-                    if (row < n - 1)
-                    {
-                        battleField.Field[row + 1, col] = explodedFieldCell;
-                    }
+        private static void ExplodeLevelFour(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        {
+            ExplodeLevelThree(row, col, n, battleField, explodedFieldCell);
 
-                    if (battleField.Field[row, col].Select() >= 3)
-                    {
-                        if (row - 2 >= 0)
-                        {
-                            battleField.Field[row - 2, col] = explodedFieldCell;
-                        }
+            if (row - 2 >= 0 && col - 1 >= 0)
+            {
+                battleField.Field[row - 2, col - 1] = explodedFieldCell;
+            }
 
-                        if (col - 2 >= 0)
-                        {
-                            battleField.Field[row, col - 2] = explodedFieldCell;
-                        }
+            if (row - 2 >= 0 && col < n - 1)
+            {
+                battleField.Field[row - 2, col + 1] = explodedFieldCell;
+            }
 
-                        if (col < n - 2)
-                        {
-                            battleField.Field[row, col + 2] = explodedFieldCell;
-                        }
+            if (row - 1 >= 0 && col - 2 >= 0)
+            {
+                battleField.Field[row - 1, col - 2] = explodedFieldCell;
+            }
 
-                        if (row < n - 2)
-                        {
-                            battleField.Field[row + 2, col] = explodedFieldCell;
-                        }
+            if (row - 1 >= 0 && col < n - 2)
+            {
+                battleField.Field[row - 1, col + 2] = explodedFieldCell;
+            }
 
-                        if (battleField.Field[row, col].Select() >= 4)
-                        {
-                            if (row - 2 >= 0 && col - 1 >= 0)
-                            {
-                                battleField.Field[row - 2, col - 1] = explodedFieldCell;
-                            }
+            if (row < n - 1 && col - 2 >= 0)
+            {
+                battleField.Field[row + 1, col - 2] = explodedFieldCell;
+            }
 
-                            if (row - 2 >= 0 && col < n - 1)
-                            {
-                                battleField.Field[row - 2, col + 1] = explodedFieldCell;
-                            }
+            if (row < n - 1 && col < n - 2)
+            {
+                battleField.Field[row + 1, col + 2] = explodedFieldCell;
+            }
 
-                            if (row - 1 >= 0 && col - 2 >= 0)
-                            {
-                                battleField.Field[row - 1, col - 2] = explodedFieldCell;
-                            }
+            if (row < n - 2 && col - 1 > 0)
+            {
+                battleField.Field[row + 2, col - 1] = explodedFieldCell;
+            }
 
-                            if (row - 1 >= 0 && col < n - 2)
-                            {
-                                battleField.Field[row - 1, col + 2] = explodedFieldCell;
-                            }
+            if (row < n - 2 && col < n - 1)
+            {
+                battleField.Field[row + 2, col + 1] = explodedFieldCell;
+            }
+        }
 
-                            if (row < n - 1 && col - 2 >= 0)
-                            {
-                                battleField.Field[row + 1, col - 2] = explodedFieldCell;
-                            }
+        private static void ExplodeLevelThree(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        {
+            ExplodeLevelTwo(row, col, n, battleField, explodedFieldCell);
 
-                            if (row < n - 1 && col < n - 2)
-                            {
-                                battleField.Field[row + 1, col + 2] = explodedFieldCell;
-                            }
+            if (row - 2 >= 0)
+            {
+                battleField.Field[row - 2, col] = explodedFieldCell;
+            }
 
-                            if (row < n - 2 && col - 1 > 0)
-                            {
-                                battleField.Field[row + 2, col - 1] = explodedFieldCell;
-                            }
+            if (col - 2 >= 0)
+            {
+                battleField.Field[row, col - 2] = explodedFieldCell;
+            }
 
-                            if (row < n - 2 && col < n - 1)
-                            {
-                                battleField.Field[row + 2, col + 1] = explodedFieldCell;
-                            }
+            if (col < n - 2)
+            {
+                battleField.Field[row, col + 2] = explodedFieldCell;
+            }
 
-                            if (battleField.Field[row, col].Select() == 5)
-                            {
-                                if (row - 2 >= 0 && col - 2 >= 0)
-                                {
-                                    battleField.Field[row - 2, col - 2] = explodedFieldCell;
-                                }
+            if (row < n - 2)
+            {
+                battleField.Field[row + 2, col] = explodedFieldCell;
+            }
+        }
 
-                                if (row - 2 >= 0 && col < n - 2)
-                                {
-                                    battleField.Field[row - 2, col + 2] = explodedFieldCell;
-                                }
+        private static void ExplodeLevelTwo(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        {
+            ExplodeLevelOne(row, col, n, battleField, explodedFieldCell);
 
-                                if (row < n - 2 && col - 2 > 0)
-                                {
-                                    battleField.Field[row + 2, col - 2] = explodedFieldCell;
-                                }
+            if (row - 1 >= 0)
+            {
+                battleField.Field[row - 1, col] = explodedFieldCell;
+            }
 
-                                if (row < n - 2 && col < n - 2)
-                                {
-                                    battleField.Field[row + 2, col + 2] = explodedFieldCell;
-                                }
-                            }
-                        }
-                    }
-                }
+            if (col - 1 >= 0)
+            {
+                battleField.Field[row, col - 1] = explodedFieldCell;
+            }
+
+            if (col < n - 1)
+            {
+                battleField.Field[row, col + 1] = explodedFieldCell;
+            }
+
+            if (row < n - 1)
+            {
+                battleField.Field[row + 1, col] = explodedFieldCell;
+            }
+        }
+
+        private static void ExplodeLevelOne(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        {
+            if (row - 1 >= 0 && col - 1 >= 0)
+            {
+                battleField.Field[row - 1, col - 1] = explodedFieldCell;
+            }
+
+            if (row - 1 >= 0 && col < n - 1)
+            {
+                battleField.Field[row - 1, col + 1] = explodedFieldCell;
+            }
+
+            if (row < n - 1 && col - 1 > 0)
+            {
+                battleField.Field[row + 1, col - 1] = explodedFieldCell;
+            }
+
+            if (row < n - 1 && col < n - 1)
+            {
+                battleField.Field[row + 1, col + 1] = explodedFieldCell;
             }
 
             battleField.Field[row, col] = explodedFieldCell;
-
-            // return battleField;
         }
 
         public bool EndOfGameCheck(int fieldSize, IGameObject battleField)

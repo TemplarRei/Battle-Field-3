@@ -4,6 +4,6 @@ namespace BattleField.Logic.Contracts
 {
     public interface IFieldCellFactory
     {
-        FieldCellComponent GetFieldCell(FieldCellType fieldCellType, string minePower = "");
+        FieldCellComponent GetFieldCell(FieldCellType fieldCellType);
     }
 }

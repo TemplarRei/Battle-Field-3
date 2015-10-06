@@ -24,7 +24,7 @@ namespace BattleField.Logic.Utils
                 case FieldCellType.ExplodedFieldCell:
                     return new ExplodedFieldCell(EXPLODED_FIELD_CELL_DRAWING_SIGN);
                 case FieldCellType.MineFieldCell:
-                    var minePower ="5";// MINES_ARRAY[RANDOM.Next(0, MINES_ARRAY.Length)];
+                    var minePower = MINES_ARRAY[RANDOM.Next(0, MINES_ARRAY.Length)];
                     return new MineFieldCell(minePower);
 
                 default:

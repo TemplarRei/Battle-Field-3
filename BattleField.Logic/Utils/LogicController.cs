@@ -14,14 +14,19 @@
             var explodedFieldCell = factory.GetFieldCell(FieldCellType.ExplodedFieldCell);
             switch (battleField.Field[row, col].Select())
             {
-                case 1: ExplodeLevelOne(row, col, n, battleField, explodedFieldCell); break;
-                case 2: ExplodeLevelTwo(row, col, n, battleField, explodedFieldCell); break;
-                case 3: ExplodeLevelThree(row, col, n, battleField, explodedFieldCell); break;
-                case 4: ExplodeLevelFour(row, col, n, battleField, explodedFieldCell); break;
-                case 5: ExplodeLevelFive(row, col, n, battleField, explodedFieldCell); break;
+                case 1: ExplodeLevelOne(row, col, n, battleField, explodedFieldCell);
+                    break;
+                case 2: ExplodeLevelTwo(row, col, n, battleField, explodedFieldCell);
+                    break;
+                case 3: ExplodeLevelThree(row, col, n, battleField, explodedFieldCell);
+                    break;
+                case 4: ExplodeLevelFour(row, col, n, battleField, explodedFieldCell);
+                    break;
+                case 5: ExplodeLevelFive(row, col, n, battleField, explodedFieldCell);
+                    break;
                 default:
                     break;
-            }         
+            }
 
             // return battleField;
         }

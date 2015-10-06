@@ -9,8 +9,8 @@ namespace BattleField.Logic.Utils
 {
     public class ExplodedFieldCell : FieldCellComponent
     {
-        public ExplodedFieldCell()
-            : base(GlobalConstants.EXPLODED_FIELD_CELL_DRAWING_SIGN)
+        public ExplodedFieldCell(string drawingSign)
+            : base(drawingSign)
         {
 
         }

@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\GlobalConstants.cs" />
     <Compile Include="Contracts\IGameObject.cs" />
     <Compile Include="Contracts\ILogicController.cs" />
     <Compile Include="Contracts\IReader.cs" />

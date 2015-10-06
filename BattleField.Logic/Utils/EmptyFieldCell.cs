@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace BattleField.Logic.Utils
 {
-    public class EmptyFieldCell: FieldCellComponent
+    public class EmptyFieldCell : FieldCellComponent
     {
-        public EmptyFieldCell()
-            : base(GlobalConstants.EMPTY_FIELD_CELL_DRAWING_SIGN)
+        public EmptyFieldCell(string drawingSign)
+            : base(drawingSign)
         {
 
         }

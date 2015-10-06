@@ -9,7 +9,7 @@ namespace BattleField.Logic.Contracts
     public interface ILogicController
     {
         int GetMine(IGameObject battleField, int row, int col);
-        void FieldUpdate(int row, int col, int n, IGameObject battleField,IFieldCellFactory factory);
+        void FieldUpdate(int row, int col, IGameObject battleField,IFieldCellFactory factory);
         bool EndOfGameCheck(int fieldSize, IGameObject battleField);
     }
 }

@@ -1,28 +1,28 @@
 ﻿namespace BattleField.Logic
 {
     using System;
-    using Contracts;
+    using BattleField.Logic.Contracts;
+    using BattleField.Logic.Utils;
 
     public class GameObject : IGameObject
     {
-        private Random rng = new Random();
-
         private const int MinSize = 2;
         private const string FieldDrawingSymbol = "-";
         private int size;
-        private string[,] field;
+        private FieldCellComponent[,] field;
+        private static readonly Random RANDOM = new Random();
+        public IFieldCellFactory Factory { get; set; }
 
-        public GameObject()
+        public GameObject(IFieldCellFactory factory)
         {
-
+            this.Factory = factory;
         }
 
         public GameObject(int size)
         {
             this.Size = size;
-            this.field = new string[this.Size, this.Size];
+            this.field = new FieldCellComponent[this.Size, this.Size];
 
-            Random randomPosition = new Random();
             this.FillField();
             this.AddMines();
         }
@@ -45,7 +45,7 @@
             }
         }
 
-        public string[,] Field
+        public FieldCellComponent[,] Field
         {
             get
             {
@@ -64,29 +64,27 @@
 
         public void FillField()
         {
-            this.Field = new string[this.Size, this.Size];
+            // TODO : FLYWEIGHT PATTERN
+            var emptyFieldCell = this.Factory.GetFieldCell(FieldCellType.EmptyFieldCell);
+            this.Field = new FieldCellComponent[this.Size, this.Size];
 
             for (int row = 0; row < this.Size; row++)
             {
                 for (int col = 0; col < this.Size; col++)
                 {
-                    this.Field[row, col] = FieldDrawingSymbol;
+                    this.Field[row, col] = emptyFieldCell;
                 }
             }
         }
 
         public void FieldInit()
         {
-            Random randomPosition = new Random();
-
             this.FillField();
-
             this.AddMines();
         }
 
         private void AddMines()
         {
-            string[] minesArray = { "1", "2", "3", "4", "5" };
 
             double fifteenPercentNSquared = 0.15 * this.Size * this.Size;
             double thirtyPercenNSquared = 0.3 * this.Size * this.Size;
@@ -94,15 +92,18 @@
             int fifteenPercent = Convert.ToInt16(fifteenPercentNSquared);
             int thirtyPercent = Convert.ToInt16(thirtyPercenNSquared);
 
-            int numberOfMines = rng.Next(fifteenPercent, thirtyPercent + 1);
+            int numberOfMines = RANDOM.Next(fifteenPercent, thirtyPercent + 1);
+
+
 
             for (int i = 0; i < numberOfMines; i++)
             {
-                int newRow = rng.Next(0, this.Size);
-                int newCol = rng.Next(0, this.Size);
-                if (this.Field[newRow, newCol] == "-")
+                int newRow = RANDOM.Next(0, this.Size);
+                int newCol = RANDOM.Next(0, this.Size);
+                if (this.Field[newRow, newCol] is EmptyFieldCell)
                 {
-                    this.Field[newRow, newCol] = minesArray[rng.Next(0, 5)];
+                    //this.Field[newRow, newCol] = new MineFieldCell(minesArray[rng.Next(0, 5)]);
+                    this.Field[newRow, newCol] = this.Factory.GetFieldCell(FieldCellType.MineFieldCell);
                 }
                 else
                 {

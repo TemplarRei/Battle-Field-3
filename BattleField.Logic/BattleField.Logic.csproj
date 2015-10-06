@@ -7,8 +7,8 @@
     <ProjectGuid>{7450790F-F49C-44C7-A674-CC4E4A23639D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BatalFieldLib</RootNamespace>
-    <AssemblyName>BatalFieldLib</AssemblyName>
+    <RootNamespace>BattleField.Logic</RootNamespace>
+    <AssemblyName>BattleField.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,8 +47,15 @@
     <Compile Include="Contracts\IWriter.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\EmptyFieldCell.cs" />
+    <Compile Include="Utils\ExplodedFieldCell.cs" />
+    <Compile Include="Utils\FieldCellComponent.cs" />
+    <Compile Include="Utils\FieldCellFactory.cs" />
+    <Compile Include="Utils\FieldCellType.cs" />
     <Compile Include="Utils\GameObject.cs" />
+    <Compile Include="Contracts\IFieldCellFactory.cs" />
     <Compile Include="Utils\LogicController.cs" />
+    <Compile Include="Utils\MineFieldCell.cs" />
     <Compile Include="Utils\Reader.cs" />
     <Compile Include="Utils\Writer.cs" />
   </ItemGroup>

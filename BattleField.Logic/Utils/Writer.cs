@@ -16,50 +16,32 @@
 
         public void PrintField(IGameObject battleField)
         {
+            // Printing the first row of table 
+            Console.Write("   ");
             for (int i = 0; i < battleField.Size; i++)
             {
-                if (i == 0)
-                {
-                    Console.Write("   {0}  ", i);
-                }
-                else
-                {
-                    Console.Write("{0}  ", i);
-                }
+                Console.Write("{0}  ", i);
             }
 
             Console.WriteLine();
 
-            for (int i = 0; i < battleField.Size; i++)
+            // Print separator row
+            Console.Write("   -");
+            for (int i = 1; i < battleField.Size; i++)
             {
-                if (i == 0)
-                {
-                    Console.Write("   -", i);
-                }
-                else
-                {
-                    Console.Write("---");
-                }
+                Console.Write("---");
             }
 
             Console.WriteLine();
-
+            
+            // Print all rows
             for (int i = 0; i < battleField.Size; i++)
             {
-                for (int j = -2; j < battleField.Size; j++)
+                Console.Write("{0}|", i);
+
+                for (int j = 0; j < battleField.Size; j++)
                 {
-                    if (j == -2)
-                    {
-                        Console.Write("{0}", i);
-                    }
-                    else if (j == -1)
-                    {
-                        Console.Write("|");
-                    }
-                    else
-                    {
-                        Console.Write(" {0} ", battleField.Field[i, j]);
-                    }
+                    Console.Write(" {0} ", battleField.Field[i, j].DrawingSign);
                 }
 
                 Console.WriteLine();

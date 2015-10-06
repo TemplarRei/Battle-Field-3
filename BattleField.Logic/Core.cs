@@ -44,7 +44,7 @@ namespace BattleField.Logic
 
                 if (mine != 0)
                 {
-                    controller.FieldUpdate(coords[0], coords[1], this.game.Size, game);
+                    controller.FieldUpdate(coords[0], coords[1], this.game.Size, this.game, this.game.Factory);
                     moveCounter++;
                 }
 

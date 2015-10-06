@@ -7,11 +7,11 @@
     public class LogicController : ILogicController
     {
 
-        public void FieldUpdate(int row, int col, IGameObject battleField, IFieldCellFactory factory)
+        public void FieldUpdate(int row, int col, IGameObject battleField)
         {
             // TODO: FLYWEIGHT PATTERN NEEDED
 
-            var explodedFieldCell = factory.GetFieldCell(FieldCellType.ExplodedFieldCell);
+            var explodedFieldCell = battleField.Factory.GetFieldCell(FieldCellType.ExplodedFieldCell);
             switch (battleField.Field[row, col].Select())
             {
                 case 1: ExplodeLevelOne(row, col, battleField.Size, battleField, explodedFieldCell);

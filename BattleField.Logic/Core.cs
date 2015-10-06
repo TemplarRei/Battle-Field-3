@@ -4,8 +4,12 @@ using BattleField.Logic.Utils;
 
 namespace BattleField.Logic
 {
+
     public class Core
     {
+        private const string FieldInitMessage = "Enter the size of the battle field: n = ";
+        private const string TurnPromptMessage = "Enter coordinates: ";
+
         ILogicController controller;
         IReader reader;
         IWriter writer;
@@ -21,12 +25,7 @@ namespace BattleField.Logic
 
         public void Run()
         {
-            //var logicController = new LogicController();
-            //var reader = new ConsoleReader();
-            //var printer = new ConsoleWriter();
-            //int fieldSize = reader.TakeFieldSize();
-            //var gameObject = new GameObject(fieldSize);
-            this.game.Size = reader.TakeFieldSize();
+            SetFieldSize();
             this.game.FieldInit();
 
             int moveCounter = 0;
@@ -36,15 +35,16 @@ namespace BattleField.Logic
 
             while (!gameOver)
             {
+                // set the user input coordinates to a int array. coords[0] = row number and coords[1] = col number.
+                // there's a bug, at the moment the logicController thinks coords[0] is col and coords[1] is row. Will be fixed asap.
 
-                string input = this.reader.GetInput();
-                int row = reader.GetIntFromInput(input, true);
-                int col = reader.GetIntFromInput(input);
-                var mine = controller.GetMine(game, row, col);
+                int[] coords = GetParsedInput();
+
+                var mine = controller.GetMine(game, coords[0], coords[1]);
 
                 if (mine != 0)
                 {
-                    controller.FieldUpdate(row, col, this.game.Size, game);
+                    controller.FieldUpdate(coords[0], coords[1], this.game.Size, game);
                     moveCounter++;
                 }
 
@@ -54,7 +54,35 @@ namespace BattleField.Logic
 
             }
 
+            // This should be fixed with an external message dictionary and a Command pattern.
+
             writer.GameEndMessage(game, moveCounter);
+        }
+
+        private int[] GetParsedInput()
+        {
+            this.writer.PrintString(TurnPromptMessage);
+            string input = this.reader.GetInput();
+            var parsedCoords = new int[2];
+
+            parsedCoords[0] = GetIntFromInput(input, true);
+            parsedCoords[1] = GetIntFromInput(input);
+
+            return parsedCoords;
+        }
+
+        private int GetIntFromInput(string input, bool coordinateFlag = false)
+        {
+            int coordFlag = coordinateFlag ? 0 : 1;
+            var rowsString = input.Split(' ')[coordFlag];
+            var rowsInt = int.Parse(rowsString);
+            return rowsInt;
+        }
+
+        private void SetFieldSize()
+        {
+            this.writer.PrintString(FieldInitMessage);
+            this.game.Size = this.reader.TakeFieldSize();
         }
     }
 }

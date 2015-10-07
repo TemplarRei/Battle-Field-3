@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using BattleField.Logic.Contracts;
-    using Models;
+
+    using Contracts;
 
     public class FlyweightCell: IFlyweightFactory
     {

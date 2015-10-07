@@ -1,6 +1,6 @@
 ﻿namespace BattleField.Logic.Models
 {
-    using BattleField.Logic.Contracts;
+    using Contracts;
 
     public abstract class FieldCellComponent: ICellObject
     {

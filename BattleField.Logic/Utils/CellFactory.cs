@@ -1,17 +1,13 @@
 ﻿namespace BattleField.Logic.Utils
 {
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
 
-    using Models;
     using Contracts;
+    using Models;
 
     public class CellFactory :ICellFactory
     {
-        private const string EMPTY_FIELD_CELL_DRAWING_SIGN = "-";
-        private const string EXPLODED_FIELD_CELL_DRAWING_SIGN = "X";
-        private static readonly string[] MINES_ARRAY = { "1", "2", "3", "4", "5" };
-
         private readonly Dictionary<string, Func<ICellObject>> CellFactories = new Dictionary<string, Func<ICellObject>>()
         {
             {"-", () => new EmptyFieldCell() },

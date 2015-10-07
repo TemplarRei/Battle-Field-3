@@ -1,68 +1,68 @@
 ﻿namespace BattleField.Logic.Utils
 {
-    using System;
+    using static System.Console;
     using Contracts;
 
     public class ConsoleWriter : IWriter
     {
         public void InitField(IGameInstance gameObject)
         {
-            Console.WriteLine("Welcome to \"Battle Field\" game.");
+            WriteLine("Welcome to \"Battle Field\" game.");
 
-            Console.WriteLine();
+            WriteLine();
             PrintField(gameObject);
-            Console.WriteLine();
+            WriteLine();
         }
 
         public void PrintField(IGameInstance battleField)
         {
             // Printing the first row of table 
-            Console.Write("   ");
+            Write("   ");
             for (int i = 0; i < battleField.Size; i++)
             {
-                Console.Write("{0}  ", i);
+                Write("{0}  ", i);
             }
 
-            Console.WriteLine();
+            WriteLine();
 
             // Print separator row
-            Console.Write("   -");
+            Write("   -");
             for (int i = 1; i < battleField.Size; i++)
             {
-                Console.Write("---");
+                Write("---");
             }
 
-            Console.WriteLine();
+            WriteLine();
             
             // Print all rows
             for (int i = 0; i < battleField.Size; i++)
             {
-                Console.Write("{0}|", i);
+                Write("{0}|", i);
 
                 for (int j = 0; j < battleField.Size; j++)
                 {
-                    Console.Write(" {0} ", battleField.Field[i, j].DrawingSign);
+                    Write(" {0} ", battleField.Field[i, j].DrawingSign);
                 }
 
-                Console.WriteLine();
+                WriteLine();
             }
         }
 
         public void GameEndMessage(IGameInstance battleField, int moveCounter)
         {
             this.PrintField(battleField);
-            Console.WriteLine("Game over!");
+            WriteLine("Game over!");
             this.PrintMoves(moveCounter);
         }
 
         public void PrintMoves(int moves)
         {
-            Console.WriteLine("Detonated mines {0}", moves);
+            WriteLine("Detonated mines {0}", moves);
         }
 
         public void PrintString(string str)
         {
-            Console.Write(str);
+            Write(str);
         }
     }
 }

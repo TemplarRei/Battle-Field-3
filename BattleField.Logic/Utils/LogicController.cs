@@ -1,8 +1,7 @@
 ﻿namespace BattleField.Logic.Utils
 {
-    using System;
 
-    using BattleField.Logic.Contracts;
+    using Contracts;
 
     public class LogicController : ILogicController
     {
@@ -219,7 +218,7 @@
 
             //if (!int.TryParse(currMoveObject, out mine))
             //{
-            //    Console.WriteLine("Invalid Move");
+            //    WriteLine("Invalid Move");
             //}
 
             //return mine;

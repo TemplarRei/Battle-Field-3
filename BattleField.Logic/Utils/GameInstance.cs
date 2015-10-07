@@ -4,15 +4,17 @@
 
     using Contracts;
     using Models;
-    using Utils;
 
-    public class GameInstance : IGameInstance
+    public class GameInstance :IGameInstance
     {
         private const int MinSize = 2;
         private const string FieldDrawingSymbol = "-";
+
+        private static readonly Random RANDOM = new Random();
+
+
         private int size;
         private ICellObject[,] field;
-        private static readonly Random RANDOM = new Random();
         public IFlyweightFactory CellStorage { get; set; }
 
         public GameInstance(IFlyweightFactory storage)
@@ -40,7 +42,7 @@
             {
                 if (value < MinSize)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format("Field size should be more than {0}", MinSize));
+                    throw new ArgumentOutOfRangeException(string.Format($"Field size should be more than {MinSize}"));
                 }
 
                 this.size = value;
@@ -69,9 +71,9 @@
             var emptyFieldCell = this.CellStorage.GetCell("-");
             this.Field = new ICellObject[this.Size, this.Size];
 
-            for (int row = 0; row < this.Size; row++)
+            for (int row = 0;row < this.Size;row++)
             {
-                for (int col = 0; col < this.Size; col++)
+                for (int col = 0;col < this.Size;col++)
                 {
                     this.Field[row, col] = emptyFieldCell;
                 }
@@ -97,7 +99,7 @@
 
 
 
-            for (int i = 0; i < numberOfMines; i++)
+            for (int i = 0;i < numberOfMines;i++)
             {
                 int newRow = RANDOM.Next(0, this.Size);
                 int newCol = RANDOM.Next(0, this.Size);

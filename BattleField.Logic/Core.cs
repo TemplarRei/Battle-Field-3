@@ -13,9 +13,9 @@ namespace BattleField.Logic
         ILogicController controller;
         IReader reader;
         IWriter writer;
-        IGameObject game;
+        IGameInstance game;
 
-        public Core(ILogicController controller, IReader reader, IWriter writer, IGameObject game)
+        public Core(ILogicController controller, IReader reader, IWriter writer, IGameInstance game)
         {
             this.controller = controller;
             this.reader = reader;

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BattleField.Logic.Contracts
+﻿namespace BattleField.Logic.Contracts
 {
     public interface IWriter
     {
-        void PrintField(IGameObject battleField);
-        void GameEndMessage(IGameObject battleField, int moveCounter);
+        void PrintField(IGameInstance battleField);
+        void GameEndMessage(IGameInstance battleField, int moveCounter);
         void PrintString(string str);
     }
 }

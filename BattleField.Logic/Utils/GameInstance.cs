@@ -1,27 +1,31 @@
 ﻿namespace BattleField.Logic
 {
     using System;
-    using BattleField.Logic.Contracts;
-    using BattleField.Logic.Utils;
 
-    public class GameObject : IGameObject
+    using Contracts;
+    using Models;
+
+    public class GameInstance :IGameInstance
     {
         private const int MinSize = 2;
         private const string FieldDrawingSymbol = "-";
-        private int size;
-        private FieldCellComponent[,] field;
-        private static readonly Random RANDOM = new Random();
-        public IFieldCellFactory Factory { get; set; }
 
-        public GameObject(IFieldCellFactory factory)
+        private static readonly Random RANDOM = new Random();
+
+
+        private int size;
+        private ICellObject[,] field;
+        public IFlyweightFactory CellStorage { get; set; }
+
+        public GameInstance(IFlyweightFactory storage)
         {
-            this.Factory = factory;
+            this.CellStorage = storage;
         }
 
-        public GameObject(int size)
+        public GameInstance(int size)
         {
             this.Size = size;
-            this.field = new FieldCellComponent[this.Size, this.Size];
+            this.field = new ICellObject[this.Size, this.Size];
 
             this.FillField();
             this.AddMines();
@@ -38,14 +42,14 @@
             {
                 if (value < MinSize)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format("Field size should be more than {0}", MinSize));
+                    throw new ArgumentOutOfRangeException(string.Format($"Field size should be more than {MinSize}"));
                 }
 
                 this.size = value;
             }
         }
 
-        public FieldCellComponent[,] Field
+        public ICellObject[,] Field
         {
             get
             {
@@ -64,13 +68,12 @@
 
         public void FillField()
         {
-            // TODO : FLYWEIGHT PATTERN
-            var emptyFieldCell = this.Factory.GetFieldCell(FieldCellType.EmptyFieldCell);
-            this.Field = new FieldCellComponent[this.Size, this.Size];
+            var emptyFieldCell = this.CellStorage.GetCell("-");
+            this.Field = new ICellObject[this.Size, this.Size];
 
-            for (int row = 0; row < this.Size; row++)
+            for (int row = 0;row < this.Size;row++)
             {
-                for (int col = 0; col < this.Size; col++)
+                for (int col = 0;col < this.Size;col++)
                 {
                     this.Field[row, col] = emptyFieldCell;
                 }
@@ -96,14 +99,15 @@
 
 
 
-            for (int i = 0; i < numberOfMines; i++)
+            for (int i = 0;i < numberOfMines;i++)
             {
                 int newRow = RANDOM.Next(0, this.Size);
                 int newCol = RANDOM.Next(0, this.Size);
                 if (this.Field[newRow, newCol] is EmptyFieldCell)
                 {
-                    //this.Field[newRow, newCol] = new MineFieldCell(minesArray[rng.Next(0, 5)]);
-                    this.Field[newRow, newCol] = this.Factory.GetFieldCell(FieldCellType.MineFieldCell);
+                    var nextMineType = RANDOM.Next(1, 5).ToString();
+
+                    this.Field[newRow, newCol] = this.CellStorage.GetCell(nextMineType);
                 }
                 else
                 {

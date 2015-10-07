@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICellFactory.cs" />
     <Compile Include="Contracts\IGameInstance.cs" />
     <Compile Include="Contracts\ILogicController.cs" />
     <Compile Include="Contracts\IDeepCloneable.cs" />
@@ -53,9 +54,10 @@
     <Compile Include="Models\ExplodedFieldCell.cs" />
     <Compile Include="Models\FieldCellComponent.cs" />
     <Compile Include="Utils\CellFactory.cs" />
+    <Compile Include="Utils\FlyweightCell.cs" />
     <Compile Include="Utils\FieldCellType.cs" />
     <Compile Include="Utils\GameInstance.cs" />
-    <Compile Include="Contracts\ICellFactory.cs" />
+    <Compile Include="Contracts\IFlyweightFactory.cs" />
     <Compile Include="Utils\LogicController.cs" />
     <Compile Include="Models\MineFieldCell.cs" />
     <Compile Include="Utils\Reader.cs" />

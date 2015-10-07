@@ -11,9 +11,9 @@
         private int size;
         private FieldCellComponent[,] field;
         private static readonly Random RANDOM = new Random();
-        public IFieldCellFactory Factory { get; set; }
+        public ICellFactory Factory { get; set; }
 
-        public GameObject(IFieldCellFactory factory)
+        public GameObject(ICellFactory factory)
         {
             this.Factory = factory;
         }

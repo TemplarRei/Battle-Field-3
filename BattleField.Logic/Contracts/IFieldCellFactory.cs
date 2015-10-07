@@ -2,7 +2,7 @@
 using System;
 namespace BattleField.Logic.Contracts
 {
-    public interface IFieldCellFactory
+    public interface ICellFactory
     {
         FieldCellComponent GetFieldCell(FieldCellType fieldCellType);
     }

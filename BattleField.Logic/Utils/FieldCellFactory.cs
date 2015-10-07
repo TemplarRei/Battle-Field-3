@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BattleField.Logic.Utils
 {
-    public class FieldCellFactory : IFieldCellFactory
+    public class CellFactory : ICellFactory
     {
         private const string EMPTY_FIELD_CELL_DRAWING_SIGN = "-";
         private const string EXPLODED_FIELD_CELL_DRAWING_SIGN = "X";
@@ -17,19 +17,21 @@ namespace BattleField.Logic.Utils
         public FieldCellComponent GetFieldCell(FieldCellType fieldCellType)
         {
             // Can also be implemented using dictionary
-            switch (fieldCellType)
-            {
-                case FieldCellType.EmptyFieldCell:
-                    return new EmptyFieldCell(EMPTY_FIELD_CELL_DRAWING_SIGN);
-                case FieldCellType.ExplodedFieldCell:
-                    return new ExplodedFieldCell(EXPLODED_FIELD_CELL_DRAWING_SIGN);
-                case FieldCellType.MineFieldCell:
-                    var minePower = MINES_ARRAY[RANDOM.Next(0, MINES_ARRAY.Length)];
-                    return new MineFieldCell(minePower);
+            //switch (fieldCellType)
+            //{
+            //    case FieldCellType.EmptyFieldCell:
+            //        return new EmptyFieldCell(EMPTY_FIELD_CELL_DRAWING_SIGN);
+            //    case FieldCellType.ExplodedFieldCell:
+            //        return new ExplodedFieldCell(EXPLODED_FIELD_CELL_DRAWING_SIGN);
+            //    case FieldCellType.MineFieldCell:
+            //        var minePower = MINES_ARRAY[RANDOM.Next(0, MINES_ARRAY.Length)];
+            //        return new MineFieldCell(minePower);
 
-                default:
-                    throw new ArgumentException();
-            }
+            //    default:
+            //        throw new ArgumentException();
+            //}
+
+            var cellsInUse = new Dictionary<string, ICellObject>();
         }
     }
 }

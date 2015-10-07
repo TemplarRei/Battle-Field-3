@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IGameObject.cs" />
     <Compile Include="Contracts\ILogicController.cs" />
+    <Compile Include="Contracts\Interface1.cs" />
     <Compile Include="Contracts\IReader.cs" />
     <Compile Include="Contracts\IValidator.cs" />
     <Compile Include="Contracts\IWriter.cs" />

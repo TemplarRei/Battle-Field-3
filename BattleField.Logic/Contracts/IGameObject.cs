@@ -10,7 +10,7 @@ namespace BattleField.Logic.Contracts
     {
         int Size { get; set; }
         FieldCellComponent[,] Field { get; set; }
-        IFieldCellFactory Factory { get; set; }
+        ICellFactory Factory { get; set; }
         void FieldInit();
     }
 }

@@ -15,9 +15,9 @@
 
         private int size;
         private ICellObject[,] field;
-        public IFlyweightFactory CellStorage { get; set; }
+        public ICellProvider CellStorage { get; set; }
 
-        public GameInstance(IFlyweightFactory storage)
+        public GameInstance(ICellProvider storage)
         {
             this.CellStorage = storage;
         }

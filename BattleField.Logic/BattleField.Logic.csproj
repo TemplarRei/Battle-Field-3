@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICellFactory.cs" />
     <Compile Include="Contracts\IGameInstance.cs" />
+    <Compile Include="Contracts\IGameSaver.cs" />
     <Compile Include="Contracts\ILogicController.cs" />
     <Compile Include="Contracts\IDeepCloneable.cs" />
     <Compile Include="Contracts\ICellObject.cs" />
+    <Compile Include="Contracts\IGameMemory.cs" />
     <Compile Include="Contracts\IReader.cs" />
     <Compile Include="Contracts\IValidator.cs" />
     <Compile Include="Contracts\IWriter.cs" />
@@ -54,11 +55,13 @@
     <Compile Include="Models\ExplodedFieldCell.cs" />
     <Compile Include="Models\FieldCellComponent.cs" />
     <Compile Include="Utils\CellFactory.cs" />
-    <Compile Include="Utils\FlyweightCell.cs" />
+    <Compile Include="Utils\CellProvider.cs" />
     <Compile Include="Utils\GameInstance.cs" />
-    <Compile Include="Contracts\IFlyweightFactory.cs" />
+    <Compile Include="Contracts\ICellProvider.cs" />
+    <Compile Include="Memento\GameSaver.cs" />
     <Compile Include="Utils\LogicController.cs" />
     <Compile Include="Models\MineFieldCell.cs" />
+    <Compile Include="Memento\Memory.cs" />
     <Compile Include="Utils\Reader.cs" />
     <Compile Include="Utils\Writer.cs" />
   </ItemGroup>

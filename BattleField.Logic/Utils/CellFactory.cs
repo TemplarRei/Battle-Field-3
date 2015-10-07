@@ -6,7 +6,7 @@
     using Contracts;
     using Models;
 
-    public class CellFactory :ICellFactory
+    public class CellFactory :ICellProvider
     {
         private readonly Dictionary<string, Func<ICellObject>> CellFactories = new Dictionary<string, Func<ICellObject>>()
         {

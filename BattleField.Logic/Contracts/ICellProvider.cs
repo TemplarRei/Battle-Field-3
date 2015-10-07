@@ -1,6 +1,6 @@
 ﻿namespace BattleField.Logic.Contracts
 {
-    public interface IFlyweightFactory
+    public interface ICellProvider
     {
         ICellObject GetCell(string cellType);
     }

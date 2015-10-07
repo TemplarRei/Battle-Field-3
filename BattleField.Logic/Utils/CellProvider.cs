@@ -5,17 +5,17 @@
 
     using Contracts;
 
-    public class FlyweightCell: IFlyweightFactory
+    public class CellProvider: ICellProvider
     {
         private const string EMPTY_FIELD_CELL_DRAWING_SIGN = "-";
         private const string EXPLODED_FIELD_CELL_DRAWING_SIGN = "X";
         private static readonly string[] MINES_ARRAY = { "1", "2", "3", "4", "5" };
         private static readonly Random RANDOM = new Random();
 
-        private ICellFactory Factory;
+        private ICellProvider Factory;
         private Dictionary<string, ICellObject> cellsInUse;
 
-        public FlyweightCell(ICellFactory factory)
+        public CellProvider(ICellProvider factory)
         {
             this.Factory = factory;
             this.cellsInUse = new Dictionary<string, ICellObject>();

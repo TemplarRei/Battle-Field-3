@@ -65,8 +65,8 @@ namespace BattleField.Logic
             string input = this.reader.GetInput();
             var parsedCoords = new int[2];
 
-            parsedCoords[0] = GetIntFromInput(input, true);
-            parsedCoords[1] = GetIntFromInput(input);
+            parsedCoords[1] = GetIntFromInput(input, true);
+            parsedCoords[0] = GetIntFromInput(input);
 
             return parsedCoords;
         }

@@ -4,7 +4,7 @@
     {
         int Size { get; set; }
         ICellObject[,] Field { get; set; }
-        IFlyweightFactory CellStorage { get; set; }
+        ICellProvider CellStorage { get; set; }
         void FieldInit();
     }
 }

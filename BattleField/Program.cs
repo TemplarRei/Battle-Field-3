@@ -8,7 +8,7 @@
     {
         public static void Main()
         {
-            var engine = new Core(new LogicController(), new ConsoleReader(), new ConsoleWriter(), new GameObject(new CellFactory()));
+            var engine = new Core(new LogicController(), new ConsoleReader(), new ConsoleWriter(), new GameInstance(new CellFactory()));
             engine.Run();
         }
     }

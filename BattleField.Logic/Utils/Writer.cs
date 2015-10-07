@@ -5,7 +5,7 @@
 
     public class ConsoleWriter : IWriter
     {
-        public void InitField(IGameObject gameObject)
+        public void InitField(IGameInstance gameObject)
         {
             Console.WriteLine("Welcome to \"Battle Field\" game.");
 
@@ -14,7 +14,7 @@
             Console.WriteLine();
         }
 
-        public void PrintField(IGameObject battleField)
+        public void PrintField(IGameInstance battleField)
         {
             // Printing the first row of table 
             Console.Write("   ");
@@ -48,7 +48,7 @@
             }
         }
 
-        public void GameEndMessage(IGameObject battleField, int moveCounter)
+        public void GameEndMessage(IGameInstance battleField, int moveCounter)
         {
             this.PrintField(battleField);
             Console.WriteLine("Game over!");

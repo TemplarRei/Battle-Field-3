@@ -7,11 +7,11 @@
     public class LogicController : ILogicController
     {
 
-        public void FieldUpdate(int row, int col, IGameObject battleField)
+        public void FieldUpdate(int row, int col, IGameInstance battleField)
         {
             // TODO: FLYWEIGHT PATTERN NEEDED
 
-            var explodedFieldCell = battleField.Factory.GetFieldCell(FieldCellType.ExplodedFieldCell);
+            var explodedFieldCell = battleField.CellStorage.GetCell("*");
             switch (battleField.Field[row, col].Select())
             {
                 case 1: ExplodeLevelOne(row, col, battleField.Size, battleField, explodedFieldCell);
@@ -31,7 +31,7 @@
             // return battleField;
         }
 
-        private static void ExplodeLevelFive(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        private static void ExplodeLevelFive(int row, int col, int n, IGameInstance battleField, ICellObject explodedFieldCell)
         {
             ExplodeLevelFour(row, col, n, battleField, explodedFieldCell);
 
@@ -56,7 +56,7 @@
             }
         }
 
-        private static void ExplodeLevelFour(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        private static void ExplodeLevelFour(int row, int col, int n, IGameInstance battleField, ICellObject explodedFieldCell)
         {
             ExplodeLevelThree(row, col, n, battleField, explodedFieldCell);
 
@@ -101,7 +101,7 @@
             }
         }
 
-        private static void ExplodeLevelThree(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        private static void ExplodeLevelThree(int row, int col, int n, IGameInstance battleField, ICellObject explodedFieldCell)
         {
             ExplodeLevelTwo(row, col, n, battleField, explodedFieldCell);
 
@@ -126,7 +126,7 @@
             }
         }
 
-        private static void ExplodeLevelTwo(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        private static void ExplodeLevelTwo(int row, int col, int n, IGameInstance battleField, ICellObject explodedFieldCell)
         {
             ExplodeLevelOne(row, col, n, battleField, explodedFieldCell);
 
@@ -151,7 +151,7 @@
             }
         }
 
-        private static void ExplodeLevelOne(int row, int col, int n, IGameObject battleField, FieldCellComponent explodedFieldCell)
+        private static void ExplodeLevelOne(int row, int col, int n, IGameInstance battleField, ICellObject explodedFieldCell)
         {
             if (row - 1 >= 0 && col - 1 >= 0)
             {
@@ -176,7 +176,7 @@
             battleField.Field[row, col] = explodedFieldCell;
         }
 
-        public bool EndOfGameCheck(int fieldSize, IGameObject battleField)
+        public bool EndOfGameCheck(int fieldSize, IGameInstance battleField)
         {
             //int count = 0;
             bool endOfGame = true;
@@ -211,7 +211,7 @@
             return endOfGame;
         }
 
-        public int GetMine(IGameObject battleField, int row, int col)
+        public int GetMine(IGameInstance battleField, int row, int col)
         {
             return battleField.Field[row, col].Select();
             //string currMoveObject = battleField.Field[row, col];

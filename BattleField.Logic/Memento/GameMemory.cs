@@ -30,13 +30,13 @@
                 save = this.revertedStates.Dequeue();
                 this.previousStates.Push(save);
             }
-
+            
             return save;
         }
 
         public void PushState(GameSave state)
         {
-            if (!state.Equals(this.revertedStates.Peek()))
+            if (this.revertedStates.Count != 0 && !state.Equals(this.revertedStates.Peek()))
             {
                 this.revertedStates.Clear();
             }

@@ -50,6 +50,8 @@
     <Compile Include="Contracts\IValidator.cs" />
     <Compile Include="Contracts\IWriter.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Memento\GameInstanceExtensions.cs" />
+    <Compile Include="Memento\GameSave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\EmptyFieldCell.cs" />
     <Compile Include="Models\ExplodedFieldCell.cs" />
@@ -61,7 +63,7 @@
     <Compile Include="Memento\GameSaver.cs" />
     <Compile Include="Utils\LogicController.cs" />
     <Compile Include="Models\MineFieldCell.cs" />
-    <Compile Include="Memento\Memory.cs" />
+    <Compile Include="Memento\GameMemory.cs" />
     <Compile Include="Utils\Reader.cs" />
     <Compile Include="Utils\Writer.cs" />
   </ItemGroup>

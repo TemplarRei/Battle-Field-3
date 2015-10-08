@@ -3,7 +3,7 @@
     using System;
     using Contracts;
 
-    class GameSaver :IGameSaver
+    public class GameSaver :IGameSaver
     {
         private IMemory<GameSave> memory;
 
@@ -12,14 +12,15 @@
             this.memory = new GameMemory();
         }
 
-        public IGameInstance RetrieveState(bool previous)
+        public GameSave RetrieveState(bool previous)
         {
-            throw new NotImplementedException();
+            var save = this.memory.GetState(previous);
+            return save;
         }
 
         public void SaveState(IGameInstance gameToSave)
         {
-            throw new NotImplementedException();
+            this.memory.PushState(gameToSave.Save());
         }
     }
 }

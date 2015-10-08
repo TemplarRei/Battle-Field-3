@@ -1,8 +1,8 @@
 ﻿namespace BattleField
 {
-    using System;
-    using BattleField.Logic;
-    using BattleField.Logic.Utils;
+    using Logic;
+    using Logic.Memento;
+    using Logic.Utils;
 
     public class Program
     {
@@ -10,7 +10,7 @@
         {
             var newGame = new GameInstance(new CellProvider(new CellFactory()));
 
-            var engine = new Core(new LogicController(), new ConsoleReader(), new ConsoleWriter(), newGame);
+            var engine = new Core(new LogicController(), new ConsoleReader(), new ConsoleWriter(), new GameSaver(), newGame);
             engine.Run();
         }
     }

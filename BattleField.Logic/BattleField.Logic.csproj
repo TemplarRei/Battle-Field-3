@@ -59,8 +59,8 @@
     <Compile Include="Contracts\IFlyweightFactory.cs" />
     <Compile Include="Utils\LogicController.cs" />
     <Compile Include="Models\MineFieldCell.cs" />
-    <Compile Include="Utils\Reader.cs" />
-    <Compile Include="Utils\Writer.cs" />
+    <Compile Include="Utils\ConsoleReader.cs" />
+    <Compile Include="Utils\ConsoleWriter.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

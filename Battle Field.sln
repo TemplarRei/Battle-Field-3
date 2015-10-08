@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField", "BattleField\BattleField.csproj", "{35870605-20E7-4668-A5A7-A3926E6D61CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField.Logic", "BattleField.Logic\BattleField.Logic.csproj", "{7450790F-F49C-44C7-A674-CC4E4A23639D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField.Tests", "BattleField.Tests\BattleField.Tests.csproj", "{9E9B471B-46BA-447D-ADC2-B055CB590C6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,18 @@ Global
 		{7450790F-F49C-44C7-A674-CC4E4A23639D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7450790F-F49C-44C7-A674-CC4E4A23639D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7450790F-F49C-44C7-A674-CC4E4A23639D}.Release|x86.ActiveCfg = Release|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{9E9B471B-46BA-447D-ADC2-B055CB590C6D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@
     using Contracts;
     using Models;
 
-    public class GameInstance :IGameInstance
+    public class GameInstance: IGameInstance
     {
         private const int MinSize = 2;
         private const string FieldDrawingSymbol = "-";
@@ -40,7 +40,7 @@
 
             set
             {
-                if (value < MinSize)
+                if(value < MinSize)
                 {
                     throw new ArgumentOutOfRangeException(string.Format($"Field size should be more than {MinSize}"));
                 }
@@ -71,9 +71,9 @@
             var emptyFieldCell = this.CellStorage.GetCell("-");
             this.Field = new ICellObject[this.Size, this.Size];
 
-            for (int row = 0;row < this.Size;row++)
+            for(int row = 0; row < this.Size; row++)
             {
-                for (int col = 0;col < this.Size;col++)
+                for(int col = 0; col < this.Size; col++)
                 {
                     this.Field[row, col] = emptyFieldCell;
                 }
@@ -99,11 +99,11 @@
 
 
 
-            for (int i = 0;i < numberOfMines;i++)
+            for(int i = 0; i < numberOfMines; i++)
             {
                 int newRow = RANDOM.Next(0, this.Size);
                 int newCol = RANDOM.Next(0, this.Size);
-                if (this.Field[newRow, newCol] is EmptyFieldCell)
+                if(this.Field[newRow, newCol] is EmptyFieldCell)
                 {
                     var nextMineType = RANDOM.Next(1, 5).ToString();
 

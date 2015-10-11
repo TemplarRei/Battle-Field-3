@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICommandHandler.cs" />
+    <Compile Include="Contracts\ICommandProvider.cs" />
     <Compile Include="Contracts\IGameInstance.cs" />
     <Compile Include="Contracts\IGameSaver.cs" />
     <Compile Include="Contracts\ILogicController.cs" />
@@ -56,6 +58,10 @@
     <Compile Include="Models\EmptyFieldCell.cs" />
     <Compile Include="Models\ExplodedFieldCell.cs" />
     <Compile Include="Models\FieldCellComponent.cs" />
+    <Compile Include="TreeOfResponsibility\BasicCommandsHandler.cs" />
+    <Compile Include="TreeOfResponsibility\CommandFactory.cs" />
+    <Compile Include="TreeOfResponsibility\CommandFlyweight.cs" />
+    <Compile Include="TreeOfResponsibility\CommandHandler.cs" />
     <Compile Include="Utils\CellFactory.cs" />
     <Compile Include="Utils\CellProvider.cs" />
     <Compile Include="Utils\GameInstance.cs" />

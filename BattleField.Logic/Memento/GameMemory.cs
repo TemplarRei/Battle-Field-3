@@ -4,23 +4,22 @@
     using System.Collections.Generic;
     using Contracts;
 
-    internal class GameMemory : IMemory<GameSave>
+    internal class GameMemory: IMemory<IGameInstance>
     {
-        private Stack<GameSave> previousStates;
-        private Queue<GameSave> revertedStates;
+        private Stack<IGameInstance> previousStates;
+        private Queue<IGameInstance> revertedStates;
 
         public GameMemory()
         {
-            this.previousStates = new Stack<GameSave>();
-            this.revertedStates = new Queue<GameSave>();
+            this.previousStates = new Stack<IGameInstance>();
+            this.revertedStates = new Queue<IGameInstance>();
         }
 
-
-        public GameSave GetState(bool isPevious)
+        public IGameInstance GetState(bool isPevious)
         {
-            GameSave save = null;
+            IGameInstance save = null;
 
-            if (isPevious)
+            if(isPevious)
             {
                 save = this.previousStates.Pop();
                 this.revertedStates.Enqueue(save);
@@ -30,16 +29,17 @@
                 save = this.revertedStates.Dequeue();
                 this.previousStates.Push(save);
             }
-            
+
             return save;
         }
 
-        public void PushState(GameSave state)
+        public void PushState(IGameInstance state)
         {
-            if (this.revertedStates.Count != 0 && !state.Equals(this.revertedStates.Peek()))
-            {
-                this.revertedStates.Clear();
-            }
+            // TODO: Implement a clear future entries upon redo.
+            //if(this.revertedStates.Count != 0 && !state.Equals(this.revertedStates.Peek()))
+            //{
+            //    this.revertedStates.Clear();
+            //}
 
             this.previousStates.Push(state);
         }

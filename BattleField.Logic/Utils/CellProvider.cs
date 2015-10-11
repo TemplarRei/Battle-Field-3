@@ -7,13 +7,10 @@
 
     public class CellProvider: ICellProvider
     {
-        private const string EMPTY_FIELD_CELL_DRAWING_SIGN = "-";
-        private const string EXPLODED_FIELD_CELL_DRAWING_SIGN = "X";
-        private static readonly string[] MINES_ARRAY = { "1", "2", "3", "4", "5" };
         private static readonly Random RANDOM = new Random();
 
         private ICellProvider Factory;
-        private Dictionary<string, ICellObject> cellsInUse;
+        private IDictionary<string, ICellObject> cellsInUse;
 
         public CellProvider(ICellProvider factory)
         {
@@ -32,24 +29,5 @@
 
             return newCell;
         }
-
-        //public FieldCellComponent GetFieldCell(FieldCellType fieldCellType)
-        //{
-        //    // Can also be implemented using dictionary
-        //    //switch (fieldCellType)
-        //    //{
-        //    //    case FieldCellType.EmptyFieldCell:
-        //    //        return new EmptyFieldCell(EMPTY_FIELD_CELL_DRAWING_SIGN);
-        //    //    case FieldCellType.ExplodedFieldCell:
-        //    //        return new ExplodedFieldCell(EXPLODED_FIELD_CELL_DRAWING_SIGN);
-        //    //    case FieldCellType.MineFieldCell:
-        //    //        var minePower = MINES_ARRAY[RANDOM.Next(0, MINES_ARRAY.Length)];
-        //    //        return new MineFieldCell(minePower);
-
-        //    //    default:
-        //    //        throw new ArgumentException();
-        //    //}
-        
-        //}
     }
 }

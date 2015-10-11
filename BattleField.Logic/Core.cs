@@ -52,7 +52,7 @@ namespace BattleField.Logic
                     {
                         for (int j = 0;j < this.game.Field.GetLength(1);j++)
                         {
-                            this.game.Field[i, j].DrawingSign = save.Field[i, j];
+                            this.game.Field[i, j] = this.game.CellStorage.GetCell(save.Field[i,j].DrawingSign);
                         }
                     }
                 }

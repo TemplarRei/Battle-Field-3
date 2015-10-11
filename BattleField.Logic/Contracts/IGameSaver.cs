@@ -6,6 +6,6 @@ namespace BattleField.Logic.Contracts
     {
         void SaveState(IGameInstance gameToSave);
 
-        GameSave RetrieveState(bool previous);
+        IGameInstance RetrieveState(bool previous);
     }
 }

@@ -1,9 +1,12 @@
-﻿namespace BattleField.Logic.Contracts
-{
-    public interface ICommandHandler
-    {
-        ICommandHandler Successor { get; set; }
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        void HandleCommand(string command);
+namespace BattleField.Logic.Contracts
+{
+    interface ICommandHandler
+    {
     }
 }

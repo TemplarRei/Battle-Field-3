@@ -11,6 +11,8 @@
         public override int Select()
         {
             return int.Parse(this.DrawingSign);
+            // Explode
+            //throw new NotImplementedException();
         }
     }
 }

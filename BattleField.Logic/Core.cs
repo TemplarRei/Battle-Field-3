@@ -42,35 +42,9 @@ namespace BattleField.Logic
                 this.writer.PrintString(TurnPromptMessage);
                 string input = this.reader.GetInput();
 
-                if (input == "undo" || input == "redo")
-                {
-                    var previous = input == "undo";
+                HandleCommands(input);
 
-                    var save = this.saver.RetrieveState(previous);
-
-                    for (int i = 0;i < this.game.Field.GetLength(0);i++)
-                    {
-                        for (int j = 0;j < this.game.Field.GetLength(1);j++)
-                        {
-                            this.game.Field[i, j] = this.game.CellStorage.GetCell(save.Field[i,j].DrawingSign);
-                        }
-                    }
-                }
-                else
-                {
-                    this.saver.SaveState(this.game);
-
-                    int[] coords = ParseInput(input);
-                    
-                    var mine = controller.GetMine(game, coords[0], coords[1]);
-
-                    if (mine != 0)
-                    {
-                        controller.FieldUpdate(coords[0], coords[1], this.game);
-                        moveCounter++;
-                    }
-                }
-
+                moveCounter++;
                 writer.PrintField(game);
 
                 gameOver = controller.EndOfGameCheck(this.game.Size, game);
@@ -80,6 +54,37 @@ namespace BattleField.Logic
             // This should be fixed with an external message dictionary and a Command pattern.
 
             writer.GameEndMessage(game, moveCounter);
+        }
+
+        private void HandleCommands(string input)
+        {
+            if(input == "undo" || input == "redo")
+            {
+                var previous = input == "undo";
+
+                var save = this.saver.RetrieveState(previous);
+
+                for(int i = 0; i < this.game.Field.GetLength(0); i++)
+                {
+                    for(int j = 0; j < this.game.Field.GetLength(1); j++)
+                    {
+                        this.game.Field[i, j].DrawingSign = save.Field[i, j];
+                    }
+                }
+            }
+            else
+            {
+                this.saver.SaveState(this.game);
+
+                int[] coords = ParseInput(input);
+
+                var mine = controller.GetMine(game, coords[0], coords[1]);
+
+                if(mine != 0)
+                {
+                    controller.FieldUpdate(coords[0], coords[1], this.game);
+                }
+            }
         }
 
         private static int[] ParseInput(string input)

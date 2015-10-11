@@ -10,7 +10,7 @@
         {
             // TODO: FLYWEIGHT PATTERN NEEDED
 
-            var explodedFieldCell = battleField.CellStorage.GetCell("X");
+            var explodedFieldCell = battleField.CellStorage.GetCell("x");
             switch (battleField.Field[row, col].Select())
             {
                 case 1: ExplodeLevelOne(row, col, battleField.Size, battleField, explodedFieldCell);

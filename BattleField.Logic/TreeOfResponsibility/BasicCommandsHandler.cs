@@ -1,16 +1,12 @@
-﻿namespace BattleField.Logic.TreeOfResponsibility
-{
-    using System;
-    using Contracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    class BasicCommandsHandler: CommandHandler, ICommandHandler
+namespace BattleField.Logic.TreeOfResponsibility
+{
+    class BasicCommandsHandler
     {
-        public override void HandleCommand(string command)
-        {
-            if(command == "undo" || command == "redo")
-            {
-                // TODO - finish
-            }
-        }
     }
 }
